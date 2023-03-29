@@ -34,8 +34,6 @@ namespace Extractori.toiminnot
 
                     fileet.Add(path);
                 }
-
-                fileet.ForEach(i => Console.WriteLine("{0}\t", i));
             }
         }
 
