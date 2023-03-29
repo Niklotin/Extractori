@@ -14,12 +14,10 @@ namespace Extractori.toiminnot
         public static List<String> fileet = new List<String>();
         public static void AvaaFileDialog()
         {
-            Console.WriteLine("Hello World!");
-
             OpenFileDialog avaaTiedosto = new OpenFileDialog();
             avaaTiedosto.InitialDirectory = defaultPath;
-            //avaaTiedosto.Filter = "Zip ja RAR tiedostoja | *.zip;*.rar";
-            //avaaTiedosto.FilterIndex = 1;
+            avaaTiedosto.Filter = "Zip ja RAR tiedostoja | *.zip;*.rar";
+            avaaTiedosto.FilterIndex = 1;
             avaaTiedosto.RestoreDirectory = true;
             avaaTiedosto.Multiselect = true;
 
@@ -52,10 +50,6 @@ namespace Extractori.toiminnot
             {
                 outputPath = Path.GetDirectoryName(avaaOutput.FileName);
             }
-            Debug.WriteLine(outputPath);
-            Debug.WriteLine("ebin");
-            
-
 
         }
 
@@ -85,7 +79,6 @@ namespace Extractori.toiminnot
             }
             
         }
-
 
     }
 }
