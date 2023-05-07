@@ -71,10 +71,6 @@ namespace Extractori
                 progressBar1.Minimum = 0;
                 progressBar1.Value = 100;
             }
-            else
-            {
-                this.Close();
-            }
         }
 
         private void label3_Click(object sender, EventArgs e)
