@@ -11,13 +11,8 @@
         "version": "7.0.0"
       }
     ],
-    "additionalProbingPaths": [
-      "C:\\Users\\Niko\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Niko\\.nuget\\packages"
-    ],
     "configProperties": {
-      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
-      "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true
     }
   }
 }

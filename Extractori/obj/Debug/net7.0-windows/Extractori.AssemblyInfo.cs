@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Extractori")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e27c85192e96a529bf1b8ba5305944c79f8773e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Extractori")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Extractori")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,7 +3,6 @@ C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Debug\net7.0-windo
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Debug\net7.0-windows\Extractori.runtimeconfig.json
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Debug\net7.0-windows\Extractori.dll
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Debug\net7.0-windows\Extractori.pdb
-C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.csproj.AssemblyReference.cache
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.Form1.resources
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.csproj.GenerateResource.cache
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.GeneratedMSBuildEditorConfig.editorconfig
@@ -15,3 +14,5 @@ C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windo
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.pdb
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.genruntimeconfig.cache
 C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\ref\Extractori.dll
+C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.sourcelink.json
+C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\obj\Debug\net7.0-windows\Extractori.Properties.Resources.resources

@@ -1,0 +1,5 @@
+C:\Users\Niko\Desktop\Extractori 1.1\Extractori.exe
+C:\Users\Niko\Desktop\Extractori 1.1\Extractori.dll
+C:\Users\Niko\Desktop\Extractori 1.1\Extractori.deps.json
+C:\Users\Niko\Desktop\Extractori 1.1\Extractori.runtimeconfig.json
+C:\Users\Niko\Desktop\Extractori 1.1\Extractori.pdb

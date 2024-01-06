@@ -3,80 +3,163 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 using System.Windows.Forms;
+
 
 namespace Extractori.toiminnot
 {
-    class Toiminnot
+    public class Toiminnot
     {
-        private static String defaultPath = "C:\\";
-        public static String outputPath = "C:\\";
-        public static List<String> fileet = new List<String>();
-        public static void AvaaFileDialog()
-        {
-            OpenFileDialog avaaTiedosto = new OpenFileDialog();
-            avaaTiedosto.InitialDirectory = defaultPath;
-            avaaTiedosto.Filter = "Zip ja RAR tiedostoja | *.zip;*.rar";
-            avaaTiedosto.FilterIndex = 1;
-            avaaTiedosto.RestoreDirectory = true;
-            avaaTiedosto.Multiselect = true;
+        private static String defaultPath = " ";
+        private static String outputPath = " ";
+        private static String[] defaultPaths = { "", "" };
+        private static String dataFile = "paths.dat";
+        public static List<String> files = new List<String>();
 
-            if (avaaTiedosto.ShowDialog() == DialogResult.OK)
+        public static void InitalizeFilePaths()
+        {
+            if (!File.Exists(dataFile))
             {
-                String selectedFileName = avaaTiedosto.FileNames[0];
-                defaultPath = avaaTiedosto.FileName.Replace(avaaTiedosto.SafeFileName, "");
-                foreach (String path in avaaTiedosto.FileNames)
+
+                using (File.Create(dataFile)) { }
+                Debug.WriteLine("Tehtiin uusi dataTiedosto");
+                
+            }if (File.ReadAllLines(dataFile).Length != 2)
+            {
+                File.WriteAllLines(dataFile, defaultPaths);
+                Debug.WriteLine("dataFile koko oli erikuin 2?");
+            }
+            else
+            {
+                defaultPaths = File.ReadAllLines(dataFile);
+                defaultPath = defaultPaths[0];
+                outputPath = defaultPaths[1];
+                Debug.WriteLine(defaultPath + " ja " + outputPath);
+                foreach(String path in defaultPaths) { Debug.WriteLine(path); }
+            }
+        }
+
+        public static string getOutputPath()
+        {
+            return outputPath;
+        }
+
+        /**
+         * Opens the file dialog and sets the options for the dialog
+         **/
+        public static void OpenFileDialog()
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.InitialDirectory = defaultPaths[0];
+            openFile.Filter = "Zip and RAR files | *.zip;*.rar";
+            openFile.FilterIndex = 1;
+            openFile.RestoreDirectory = true;
+            openFile.Multiselect = true;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                //defaultPath = openFile.FileName.Replace(openFile.SafeFileName, "");
+                foreach (String path in openFile.FileNames)
                 {
-                    if (fileet.Contains(path))
+                    if (files.Contains(path))
                     {
                         continue;
                     }
 
-                    fileet.Add(path);
+                    files.Add(path);
                 }
             }
         }
 
-        public static void AvaaOutputDialog()
+        /**
+         * Opens up the output dialog and sets the options for the dialog
+         * */
+        public static void OpenOutputDialog()
         {
-            OpenFileDialog avaaOutput = new OpenFileDialog();
-            avaaOutput.ValidateNames = false;
-            avaaOutput.CheckFileExists = false;
-            avaaOutput.FileName = "Folder Selection";
-            
-            if(avaaOutput.ShowDialog() == DialogResult.OK)
+            OpenFileDialog openOutput = new OpenFileDialog();
+            openOutput.InitialDirectory = $@"{defaultPaths[1]}";
+            openOutput.RestoreDirectory = false;
+            openOutput.ValidateNames = false;
+            openOutput.CheckFileExists = false;
+            openOutput.FileName = "Folder Selection";
+
+            if (openOutput.ShowDialog() == DialogResult.OK)
             {
-                outputPath = Path.GetDirectoryName(avaaOutput.FileName);
+                outputPath = Path.GetDirectoryName(openOutput.FileName);
+                Debug.WriteLine(defaultPaths[1]);
+            }
+
+        }
+        /**
+         * Sets the default outputpath, its kind of a hack because winforms default folder selection is straight ass, all these use a file selection instead, may lead to
+         * frustration if you don't know how to use it, but i gag everytime i see the default folder selection so w/e
+         **/
+        public static void setOutputPath()
+        {
+            OpenFileDialog newOutput = new OpenFileDialog();
+            newOutput.ValidateNames = false;
+            newOutput.CheckFileExists= false;
+            newOutput.FileName = "Folder Selcetion";
+
+            if (newOutput.ShowDialog() == DialogResult.OK)
+            {
+                defaultPaths[1] = Path.GetDirectoryName (newOutput.FileName);
+                Debug.WriteLine("Asetettiin oletus ulostuloksi: " + defaultPaths[1]);
+                File.WriteAllLines(dataFile, defaultPaths);
+                InitalizeFilePaths();
+            }
+        }
+
+        /**
+         * Sets the default input path
+         **/
+        public static void setInputPath()
+        {
+            OpenFileDialog newOutput = new OpenFileDialog();
+            newOutput.ValidateNames = false;
+            newOutput.CheckFileExists = false;
+            newOutput.FileName = "Folder Selection";
+
+            if (newOutput.ShowDialog() == DialogResult.OK)
+            {
+                defaultPaths[0] = Path.GetDirectoryName(newOutput.FileName);
+                Debug.WriteLine("Asetettiin oletus sisääntuloksi: " + defaultPaths[0]);
+                File.WriteAllLines(dataFile, defaultPaths);
+                InitalizeFilePaths();
             }
 
         }
 
-        public static void PuraTiedostot()
-        {
-         
-            foreach(String path in fileet)
-            {
 
-                using (ZipArchive hakemisto = ZipFile.OpenRead(path))
+        /**
+         * Delegate and event for updating the progressbar
+         **/
+        public delegate void UpdateProgressBarDelegate(int value, int maxValue);
+        public static event UpdateProgressBarDelegate OnUpdateProgressBar;
+
+        /**
+         * Extracts the files added into the system
+         * Counts the progressbar values and updates them
+         **/
+        public static void ExtractFiles()
+        {
+
+            int totalFiles = files.Count;
+            int extractedFiles = 0;
+
+            foreach (String path in files)
+            {
+                using (ZipArchive directory = ZipFile.OpenRead(path))
                 {
-                    foreach (var entry in hakemisto.Entries)
-                    {
-                        int prog = hakemisto.Entries.Count;
-                        
-                        
-                        String kansio = $@"{outputPath}\{entry}";
-                        if(Directory.Exists(kansio))
-                        {
-                            Directory.Delete(kansio, true);
-                        }
-                    }
-
-                    ZipFile.ExtractToDirectory(path, outputPath);
+                    ZipFile.ExtractToDirectory(path, outputPath, true);
                 }
+                extractedFiles++;
+                int progressValue = (int)((float)extractedFiles / totalFiles * 100);
+                OnUpdateProgressBar?.Invoke(progressValue, 100);
 
             }
-            
-        }
 
+        }
     }
 }

@@ -14,29 +14,30 @@ namespace Extractori
 
     public partial class Form1 : Form
     {
-        public String defaultPath = "G:\\";
         public Form1()
         {
             InitializeComponent();
+            label2.Text = $"Current output folder: {Toiminnot.getOutputPath()}";
+            Toiminnot.OnUpdateProgressBar += UpdateProgressBar;
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Toiminnot.AvaaFileDialog();
+            Toiminnot.OpenFileDialog();
             refreshLista();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Toiminnot.fileet.RemoveAt(listaLoota.SelectedIndex);
+            Toiminnot.files.RemoveAt(listaLoota.SelectedIndex);
             refreshLista();
         }
 
         private void refreshLista()
         {
             listaLoota.Items.Clear();
-            foreach (string item in Toiminnot.fileet)
+            foreach (string item in Toiminnot.files)
             {
                 listaLoota.Items.Add(item);
             }
@@ -44,37 +45,51 @@ namespace Extractori
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Toiminnot.AvaaOutputDialog();
-            label2.Text = $"Current output folder: {Toiminnot.outputPath}";
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            Toiminnot.OpenOutputDialog();
+            label2.Text = $"Current output folder: {Toiminnot.getOutputPath()}";
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
 
             DialogResult result = MessageBox.Show
-                ($"The selected files will be extracted to {Toiminnot.outputPath}. This will overwrite any existing data folders and/or files. Are you sure you want to continue?",
+                ($"The selected files will be extracted to {Toiminnot.getOutputPath()}. This will overwrite any existing files. Are you sure you want to continue?",
                 "Confirmation",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Exclamation
                 );
             if (result == DialogResult.Yes)
             {
-                Toiminnot.PuraTiedostot();
-                progressBar1.Value = 0;
-                progressBar1.Maximum = 100;
-                progressBar1.Minimum = 0;
-                progressBar1.Value = 100;
+                Toiminnot.ExtractFiles();
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void UpdateProgressBar(int value, int maxValue)
         {
-
+            if (progressBar1.InvokeRequired)
+                {
+                progressBar1.Invoke(new Action(() =>
+                {
+                    progressBar1.Value = value;
+                    progressBar1.Maximum = maxValue;
+                }));
+                }
+            else
+            {
+                progressBar1.Value = value;
+                progressBar1.Maximum = maxValue;
+            }
         }
+
+        private void setDefaultOutputPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Toiminnot.setOutputPath();
+        }
+
+        private void setDefaultInputPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Toiminnot.setInputPath();
+        }
+
     }
 }

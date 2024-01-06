@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Extractori.toiminnot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,11 @@ namespace Extractori
         [STAThread]
         static void Main()
         {
+            Toiminnot.InitalizeFilePaths();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
 }

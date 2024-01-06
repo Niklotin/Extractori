@@ -40,6 +40,12 @@ namespace Extractori
             button5 = new Button();
             progressBar1 = new ProgressBar();
             label3 = new Label();
+            toolStrip1 = new ToolStrip();
+            toolStripDropDownButton1 = new ToolStripDropDownButton();
+            setDefaultOutputPathToolStripMenuItem = new ToolStripMenuItem();
+            setDefaultInputPathToolStripMenuItem = new ToolStripMenuItem();
+            label4 = new Label();
+            toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -68,7 +74,7 @@ namespace Extractori
             // 
             listaLoota.FormattingEnabled = true;
             listaLoota.ItemHeight = 15;
-            listaLoota.Location = new Point(38, 17);
+            listaLoota.Location = new Point(38, 28);
             listaLoota.Margin = new Padding(4, 3, 4, 3);
             listaLoota.Name = "listaLoota";
             listaLoota.Size = new Size(677, 304);
@@ -83,7 +89,6 @@ namespace Extractori
             label1.Size = new Size(75, 15);
             label1.TabIndex = 6;
             label1.Text = "Selected files";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -108,9 +113,9 @@ namespace Extractori
             // 
             // button5
             // 
-            button5.Location = new Point(749, 17);
+            button5.Location = new Point(749, 28);
             button5.Name = "button5";
-            button5.Size = new Size(172, 463);
+            button5.Size = new Size(172, 452);
             button5.TabIndex = 10;
             button5.Text = "Extract selected";
             button5.UseVisualStyleBackColor = true;
@@ -125,19 +130,60 @@ namespace Extractori
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(542, 360);
+            label3.Location = new Point(0, 0);
             label3.Name = "label3";
-            label3.Size = new Size(82, 15);
-            label3.TabIndex = 12;
-            label3.Text = "\"Progress\" bar";
-            label3.Click += label3_Click;
+            label3.Size = new Size(100, 23);
+            label3.TabIndex = 14;
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1 });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(933, 25);
+            toolStrip1.TabIndex = 13;
+            toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton1
+            // 
+            toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { setDefaultOutputPathToolStripMenuItem, setDefaultInputPathToolStripMenuItem });
+            toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
+            toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
+            toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            toolStripDropDownButton1.Size = new Size(29, 22);
+            toolStripDropDownButton1.Text = "Set default paths";
+            // 
+            // setDefaultOutputPathToolStripMenuItem
+            // 
+            setDefaultOutputPathToolStripMenuItem.Name = "setDefaultOutputPathToolStripMenuItem";
+            setDefaultOutputPathToolStripMenuItem.Size = new Size(196, 22);
+            setDefaultOutputPathToolStripMenuItem.Text = "Set default output path";
+            setDefaultOutputPathToolStripMenuItem.Click += setDefaultOutputPathToolStripMenuItem_Click;
+            // 
+            // setDefaultInputPathToolStripMenuItem
+            // 
+            setDefaultInputPathToolStripMenuItem.Name = "setDefaultInputPathToolStripMenuItem";
+            setDefaultInputPathToolStripMenuItem.Size = new Size(196, 22);
+            setDefaultInputPathToolStripMenuItem.Text = "Set default input path";
+            setDefaultInputPathToolStripMenuItem.Click += setDefaultInputPathToolStripMenuItem_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(548, 340);
+            label4.Name = "label4";
+            label4.Size = new Size(72, 15);
+            label4.TabIndex = 15;
+            label4.Text = "Progress bar";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 519);
+            Controls.Add(label4);
+            Controls.Add(toolStrip1);
             Controls.Add(label3);
             Controls.Add(progressBar1);
             Controls.Add(button5);
@@ -151,6 +197,8 @@ namespace Extractori
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
             Text = "ZipRarExtractor";
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -165,6 +213,11 @@ namespace Extractori
         private Button button5;
         private ProgressBar progressBar1;
         private Label label3;
+        private ToolStrip toolStrip1;
+        private ToolStripDropDownButton toolStripDropDownButton1;
+        private ToolStripMenuItem setDefaultOutputPathToolStripMenuItem;
+        private ToolStripMenuItem setDefaultInputPathToolStripMenuItem;
+        private Label label4;
     }
 }
 
