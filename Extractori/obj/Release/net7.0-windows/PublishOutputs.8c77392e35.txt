@@ -1,5 +1,0 @@
-C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Release\net7.0-windows\publish\Extractori.exe
-C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Release\net7.0-windows\publish\Extractori.dll
-C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Release\net7.0-windows\publish\Extractori.deps.json
-C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Release\net7.0-windows\publish\Extractori.runtimeconfig.json
-C:\Users\Niko\Documents\Extractori2\Extractori\Extractori\bin\Release\net7.0-windows\publish\Extractori.pdb
