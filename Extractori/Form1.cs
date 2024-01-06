@@ -30,7 +30,6 @@ namespace Extractori
         private void button3_Click(object sender, EventArgs e)
         {
             Toiminnot.fileet.RemoveAt(listaLoota.SelectedIndex);
-            Console.WriteLine(listaLoota.SelectedIndex.ToString());
             refreshLista();
         }
 
