@@ -23,20 +23,16 @@ namespace Extractori.toiminnot
             {
 
                 using (File.Create(dataFile)) { }
-                Debug.WriteLine("Tehtiin uusi dataTiedosto");
                 
             }if (File.ReadAllLines(dataFile).Length != 2)
             {
                 File.WriteAllLines(dataFile, defaultPaths);
-                Debug.WriteLine("dataFile koko oli erikuin 2?");
             }
             else
             {
                 defaultPaths = File.ReadAllLines(dataFile);
                 defaultPath = defaultPaths[0];
                 outputPath = defaultPaths[1];
-                Debug.WriteLine(defaultPath + " ja " + outputPath);
-                foreach(String path in defaultPaths) { Debug.WriteLine(path); }
             }
         }
 
@@ -59,7 +55,6 @@ namespace Extractori.toiminnot
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                //defaultPath = openFile.FileName.Replace(openFile.SafeFileName, "");
                 foreach (String path in openFile.FileNames)
                 {
                     if (files.Contains(path))
@@ -87,7 +82,6 @@ namespace Extractori.toiminnot
             if (openOutput.ShowDialog() == DialogResult.OK)
             {
                 outputPath = Path.GetDirectoryName(openOutput.FileName);
-                Debug.WriteLine(defaultPaths[1]);
             }
 
         }
@@ -105,7 +99,6 @@ namespace Extractori.toiminnot
             if (newOutput.ShowDialog() == DialogResult.OK)
             {
                 defaultPaths[1] = Path.GetDirectoryName (newOutput.FileName);
-                Debug.WriteLine("Asetettiin oletus ulostuloksi: " + defaultPaths[1]);
                 File.WriteAllLines(dataFile, defaultPaths);
                 InitalizeFilePaths();
             }
@@ -124,7 +117,6 @@ namespace Extractori.toiminnot
             if (newOutput.ShowDialog() == DialogResult.OK)
             {
                 defaultPaths[0] = Path.GetDirectoryName(newOutput.FileName);
-                Debug.WriteLine("Asetettiin oletus sisääntuloksi: " + defaultPaths[0]);
                 File.WriteAllLines(dataFile, defaultPaths);
                 InitalizeFilePaths();
             }
